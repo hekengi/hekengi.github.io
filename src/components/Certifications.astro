@@ -1,0 +1,38 @@
+---
+const theme = Astro.props.theme || 'light';
+const isDark = theme === 'dark';
+const isColor = theme === 'color';
+
+const titleColor = isDark ? 'text-emerald-400' : isColor ? 'text-indigo-600' : 'text-primary';
+const headingColor = isDark ? 'text-white' : 'text-text';
+const cardStyle = isDark ? 'bg-gray-900 border-gray-800 hover:border-emerald-500/30 hover:shadow-md' : isColor ? 'bg-white border-indigo-100 hover:border-indigo-300 hover:shadow-md' : 'bg-white border-border hover:border-primary/30 hover:shadow-md';
+const iconBg = isDark ? 'bg-emerald-500/10 text-emerald-400' : isColor ? 'bg-indigo-50 text-indigo-600' : 'bg-primary/5 text-primary';
+const nameColor = isDark ? 'text-white' : 'text-text';
+const descColor = isDark ? 'text-gray-400' : 'text-text-secondary';
+
+const certs = [
+  { name: 'SQLD', org: '한국데이터산업진흥원', desc: 'SQL 개발자' },
+  { name: 'OPIc IH', org: 'ACTFL', desc: '영어 Speaking Intermediate High' },
+];
+---
+
+<section id="certifications" class="py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class:list={['text-sm font-semibold uppercase tracking-widest mb-2', titleColor]}>Certifications</h2>
+    <h3 class:list={['text-3xl font-bold mb-12', headingColor]}>자격증 / 어학</h3>
+    <div class="grid sm:grid-cols-2 gap-6">
+      {certs.map(cert => (
+        <div class:list={['flex items-center gap-5 p-5 rounded-xl border transition-all', cardStyle]}>
+          <div class:list={['w-12 h-12 flex items-center justify-center rounded-lg font-bold text-lg shrink-0', iconBg]}>
+            {cert.name.charAt(0)}
+          </div>
+          <div>
+            <h4 class:list={['font-bold', nameColor]}>{cert.name}</h4>
+            <p class:list={['text-sm', descColor]}>{cert.desc}</p>
+            <p class:list={['text-xs mt-0.5', descColor]}>{cert.org}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

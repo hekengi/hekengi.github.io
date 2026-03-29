@@ -1,0 +1,37 @@
+---
+const theme = Astro.props.theme || 'light';
+const isDark = theme === 'dark';
+const isColor = theme === 'color';
+
+const sectionBg = isDark ? 'bg-gray-900' : isColor ? 'bg-indigo-50/50' : 'bg-surface';
+const titleColor = isDark ? 'text-emerald-400' : isColor ? 'text-indigo-600' : 'text-primary';
+const headingColor = isDark ? 'text-white' : 'text-text';
+const catTitle = isDark ? 'text-gray-300 border-gray-700' : isColor ? 'text-gray-800 border-indigo-200' : 'text-text border-border';
+const itemStyle = isDark ? 'bg-gray-800 text-gray-300 border-gray-700 hover:border-emerald-400 hover:text-emerald-400' : isColor ? 'bg-white text-gray-600 border-indigo-100 hover:border-indigo-400 hover:text-indigo-600' : 'bg-white text-text-secondary border-border hover:border-primary hover:text-primary';
+
+const categories = [
+  { title: 'Backend', items: ['Java', 'Spring Boot', 'Spring Security', 'Spring Data JPA', 'JWT', 'REST API', 'Gradle'] },
+  { title: 'AI / ML', items: ['Python', 'PyTorch', 'OpenCV', 'scikit-learn', 'scikit-image', 'GradCAM', 'LIME'] },
+  { title: 'Frontend', items: ['React', 'JavaScript', 'Thymeleaf', 'HTML / CSS'] },
+  { title: 'Infra & Tools', items: ['AWS EC2', 'MySQL', 'H2', 'Git', 'GitHub'] },
+];
+---
+
+<section id="skills" class:list={['py-24', sectionBg]}>
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class:list={['text-sm font-semibold uppercase tracking-widest mb-2', titleColor]}>Skills</h2>
+    <h3 class:list={['text-3xl font-bold mb-12', headingColor]}>기술 스택</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {categories.map(cat => (
+        <div>
+          <h4 class:list={['text-sm font-bold uppercase tracking-wider mb-4 pb-2 border-b', catTitle]}>{cat.title}</h4>
+          <div class="flex flex-wrap gap-2">
+            {cat.items.map(item => (
+              <span class:list={['px-3 py-1.5 text-sm rounded-lg border transition-colors cursor-default', itemStyle]}>{item}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

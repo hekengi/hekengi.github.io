@@ -1,0 +1,45 @@
+---
+const theme = Astro.props.theme || 'light';
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#contact', label: 'Contact' },
+];
+
+const navBg = {
+  light: 'bg-white/80',
+  color: 'bg-white/70',
+  dark: 'bg-gray-950/80',
+}[theme];
+
+const logoColor = theme === 'dark' ? 'text-white' : 'text-text';
+const linkColor = theme === 'dark' ? 'text-gray-400 hover:text-emerald-400' : 'text-text-secondary hover:text-primary';
+const borderScroll = theme === 'dark' ? 'border-gray-800' : 'border-border';
+---
+
+<nav id="nav" class:list={['fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-transparent transition-all duration-300', navBg]} data-border-class={borderScroll}>
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#" class:list={['text-lg font-bold tracking-tight', logoColor]}>HE.</a>
+    <div class="hidden md:flex items-center gap-8">
+      {links.map(link => (
+        <a href={link.href} class:list={['text-sm transition-colors', linkColor]}>{link.label}</a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('nav');
+  const borderClass = nav?.dataset.borderClass || 'border-border';
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      nav?.classList.add(borderClass, 'shadow-sm');
+      nav?.classList.remove('border-transparent');
+    } else {
+      nav?.classList.remove(borderClass, 'shadow-sm');
+      nav?.classList.add('border-transparent');
+    }
+  });
+</script>

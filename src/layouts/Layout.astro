@@ -1,0 +1,32 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title: string;
+  theme?: 'light' | 'color' | 'dark';
+}
+
+const { title, theme = 'light' } = Astro.props;
+
+const bodyClass = {
+  light: 'bg-white text-text',
+  color: 'bg-gradient-to-b from-blue-50 to-white text-gray-900',
+  dark: 'bg-gray-950 text-gray-100',
+}[theme];
+---
+
+<!doctype html>
+<html lang="ko" data-theme={theme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="최효은 - Backend Developer Portfolio" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body class:list={[bodyClass, 'font-sans antialiased']}>
+    <slot />
+  </body>
+</html>

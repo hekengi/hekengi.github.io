@@ -1,0 +1,144 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+---
+
+<ProjectLayout
+  title="AI 기반 에너지 소재 열화 예측 플랫폼"
+  project="AI 기반 에너지 소재 열화 예측 플랫폼"
+  org="한국에너지기술연구원 (KIER)"
+  period="2026.02 - 현재"
+  tags={['Python', 'PyTorch', 'OpenCV', 'scikit-image', 'GradCAM', 'LIME', 'CRAFT']}
+>
+
+<h2>프로젝트 개요</h2>
+<p>
+  수소연료전지(PEMFC) 촉매의 SEM(주사전자현미경) 이미지를 AI로 분석하여 열화 상태를 자동으로 예측하는 플랫폼을 구축했습니다. 연구원분들이 기존에 육안으로 분석하던 과정을, 자동화된 분석 파이프라인과 딥러닝 모델로 대체하는 것이 목표였습니다.
+</p>
+<div class="callout">
+  <p>핵심 성과: 높은 정확도에 만족하지 않고, GradCAM·LIME·CRAFT를 적용한 XAI 프레임워크를 설계하여 연구원이 AI의 판단을 신뢰하고 실제 연구에 활용할 수 있는 환경을 조성했습니다.</p>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-value">99%</div>
+    <div class="stat-label">검증 정확도</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">10종</div>
+    <div class="stat-label">비교 모델</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">24회</div>
+    <div class="stat-label">체계적 실험</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">3종</div>
+    <div class="stat-label">XAI 기법</div>
+  </div>
+</div>
+
+<h2>시스템 아키텍처</h2>
+
+<div class="diagram">
+  <svg viewBox="0 0 800 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+    <!-- Pipeline boxes -->
+    <rect x="10" y="40" width="140" height="70" rx="12" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
+    <text x="80" y="68" text-anchor="middle" fill="#34d399" font-size="11" font-weight="600">SEM 이미지 입력</text>
+    <text x="80" y="86" text-anchor="middle" fill="#6ee7b7" font-size="9">Hitachi / FEI</text>
+
+    <rect x="180" y="40" width="140" height="70" rx="12" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+    <text x="250" y="68" text-anchor="middle" fill="#a5b4fc" font-size="11" font-weight="600">메타데이터 파싱</text>
+    <text x="250" y="86" text-anchor="middle" fill="#c7d2fe" font-size="9">2종 장비 통합</text>
+
+    <rect x="350" y="40" width="140" height="70" rx="12" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+    <text x="420" y="68" text-anchor="middle" fill="#a5b4fc" font-size="11" font-weight="600">전처리</text>
+    <text x="420" y="86" text-anchor="middle" fill="#c7d2fe" font-size="9">메타바 제거 / 정규화</text>
+
+    <rect x="520" y="10" width="140" height="70" rx="12" fill="#1a2e05" stroke="#84cc16" stroke-width="1.5"/>
+    <text x="590" y="38" text-anchor="middle" fill="#bef264" font-size="11" font-weight="600">기공 검출</text>
+    <text x="590" y="56" text-anchor="middle" fill="#d9f99d" font-size="9">Mode-Relative Threshold</text>
+
+    <rect x="520" y="90" width="140" height="70" rx="12" fill="#1a2e05" stroke="#84cc16" stroke-width="1.5"/>
+    <text x="590" y="118" text-anchor="middle" fill="#bef264" font-size="11" font-weight="600">딥러닝 분류</text>
+    <text x="590" y="136" text-anchor="middle" fill="#d9f99d" font-size="9">10종 모델 비교</text>
+
+    <rect x="690" y="50" width="100" height="70" rx="12" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
+    <text x="740" y="78" text-anchor="middle" fill="#34d399" font-size="11" font-weight="600">XAI 해석</text>
+    <text x="740" y="96" text-anchor="middle" fill="#6ee7b7" font-size="9">GradCAM / LIME</text>
+
+    <!-- Arrows -->
+    <path d="M150 75 L180 75" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <path d="M320 75 L350 75" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <path d="M490 60 L520 45" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <path d="M490 85 L520 125" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <path d="M660 45 L690 70" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <path d="M660 125 L690 95" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#4b5563"/>
+      </marker>
+    </defs>
+
+    <!-- Bottom: Model comparison -->
+    <rect x="10" y="190" width="780" height="110" rx="12" fill="#111827" stroke="#1f2937" stroke-width="1"/>
+    <text x="400" y="215" text-anchor="middle" fill="#6b7280" font-size="11" font-weight="600">모델 비교 실험 결과 (검증 정확도 100% 달성 모델)</text>
+
+    <rect x="30" y="230" width="110" height="50" rx="8" fill="#064e3b50" stroke="#34d39950"/>
+    <text x="85" y="252" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">ConvNeXt-Tiny</text>
+    <text x="85" y="268" text-anchor="middle" fill="#6ee7b7" font-size="9">Loss: 0.0002</text>
+
+    <rect x="160" y="230" width="110" height="50" rx="8" fill="#064e3b50" stroke="#34d39950"/>
+    <text x="215" y="252" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">DenseNet-121</text>
+    <text x="215" y="268" text-anchor="middle" fill="#6ee7b7" font-size="9">안정적 수렴</text>
+
+    <rect x="290" y="230" width="110" height="50" rx="8" fill="#064e3b50" stroke="#34d39950"/>
+    <text x="345" y="252" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">MobileNet V2</text>
+    <text x="345" y="268" text-anchor="middle" fill="#6ee7b7" font-size="9">경량 + 범용</text>
+
+    <rect x="420" y="230" width="110" height="50" rx="8" fill="#064e3b50" stroke="#34d39950"/>
+    <text x="475" y="252" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">GoogLeNet</text>
+    <text x="475" y="268" text-anchor="middle" fill="#6ee7b7" font-size="9">균형잡힌 구조</text>
+
+    <rect x="550" y="230" width="110" height="50" rx="8" fill="#45142050" stroke="#f8717150"/>
+    <text x="605" y="252" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">ViT-B/16</text>
+    <text x="605" y="268" text-anchor="middle" fill="#fca5a5" font-size="9">86% (불안정)</text>
+
+    <rect x="680" y="230" width="100" height="50" rx="8" fill="#45142050" stroke="#f8717150"/>
+    <text x="730" y="252" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">AlexNet</text>
+    <text x="730" y="268" text-anchor="middle" fill="#fca5a5" font-size="9">93% (불안정)</text>
+  </svg>
+</div>
+
+<h2>핵심 기술적 도전과 해결</h2>
+
+<h3>1. 장비 이질성 문제</h3>
+<p>
+  연구원에서 사용하는 SEM 장비가 Hitachi SU8200과 FEI Helios 5 UX 두 종류였는데, 메타데이터 구조가 완전히 달랐습니다. Hitachi는 TIFF Tag에 텍스트로, FEI는 XML로 저장했고 배율도 50k/35k로 달랐습니다. 두 장비의 메타데이터를 통합 파싱하는 모듈을 개발하고, 해상도 정규화와 물리 단위 변환(pixel → nm² → µm²)을 적용하여 장비 무관 정량 비교를 가능하게 했습니다.
+</p>
+
+<h3>2. 기공 검출 알고리즘 설계</h3>
+<p>
+  기존 Otsu 임계값 방식은 표면 질감까지 기공으로 잘못 분류하여 2~3배 과검출되었습니다. 4가지 임계값 방식(Otsu, Triangle, 평균-kσ, 백분위수)을 비교 실험한 뒤, SEM 이미지에서 기공은 전자가 빠져나오지 못하는 깊은 구멍이라는 물리적 특성에 착안하여 <strong>Mode-Relative Threshold</strong> 알고리즘을 직접 설계했습니다.
+</p>
+
+<h3>3. 소규모·불균형 데이터 극복</h3>
+<p>
+  72장의 이미지(0K: 22장, 200K: 50장)로 학습해야 했습니다. ImageNet 사전학습 가중치 전이학습, 소수 클래스 2.27배 가중치, WeightedRandomSampler, 데이터 증강을 조합하여 극복했습니다. 10종 모델 × 3가지 데이터 분할 비율(8:2, 5:5, 2:8)로 총 24회 실험을 수행하여 ConvNeXt-Tiny, DenseNet-121, MobileNet V2가 극단적 조건에서도 100%를 유지함을 확인했습니다.
+</p>
+
+<h3>4. 설명 가능한 AI (XAI)</h3>
+<p>
+  연구 현장에서 AI를 실제로 활용하려면 정확도만으로는 부족하고, 판단 근거를 연구원이 이해할 수 있어야 했습니다. <strong>GradCAM</strong>으로 10종 모델의 주목 영역을 히트맵으로 시각화하고, 기존 LIME의 무작위 분할 대신 물리적으로 의미 있는 분할을 적용한 <strong>기공 인식 LIME</strong>을 직접 설계했습니다. 추가로 <strong>CRAFT</strong>를 적용하여 모델이 학습한 개념 수준의 해석도 수행했습니다.
+</p>
+
+<h2>사용 기술</h2>
+<ul>
+  <li><strong>딥러닝</strong>: PyTorch, torchvision (ConvNeXt-Tiny, ResNet-18, DenseNet-121, EfficientNet-B0, ViT-B/16 등 10종)</li>
+  <li><strong>이미지 처리</strong>: OpenCV, scikit-image, tifffile, Pillow</li>
+  <li><strong>XAI</strong>: GradCAM (직접 구현), LIME (커스텀 세그멘테이션), CRAFT</li>
+  <li><strong>데이터 분석</strong>: NumPy, SciPy, pandas, matplotlib</li>
+  <li><strong>패키지 관리</strong>: uv (Python 3.12+)</li>
+</ul>
+
+</ProjectLayout>

@@ -1,0 +1,106 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+---
+
+<ProjectLayout
+  title="선물하기 서비스"
+  project="선물하기 서비스 백엔드 (4단계)"
+  org="카카오테크 캠퍼스 | 개인 미션"
+  period="2025.04 - 2025.11"
+  tags={['Java', 'Spring Boot', 'JPA', 'JWT', 'Kakao OAuth', 'AWS EC2']}
+  github="https://github.com/hekengi/spring-gift-order"
+>
+
+<h2>프로젝트 개요</h2>
+<p>
+  카카오테크 캠퍼스에서 Spring Boot 기반의 선물하기 서비스를 4단계에 걸쳐 점진적으로 개발하며, 백엔드 전체 플로우를 경험한 프로젝트입니다. 각 단계마다 새로운 기술을 추가하며 실무에 가까운 구조를 완성해 나갔습니다.
+</p>
+
+<h2>단계별 성장 과정</h2>
+
+<div class="diagram">
+  <svg viewBox="0 0 750 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+    <!-- Step 1 -->
+    <rect x="10" y="30" width="170" height="100" rx="12" fill="#064e3b50" stroke="#34d39950" stroke-width="1.5"/>
+    <text x="95" y="55" text-anchor="middle" fill="#34d399" font-size="12" font-weight="700">Step 1: Product</text>
+    <text x="95" y="75" text-anchor="middle" fill="#6ee7b7" font-size="9">REST API CRUD</text>
+    <text x="95" y="90" text-anchor="middle" fill="#6ee7b7" font-size="9">JdbcTemplate + H2</text>
+    <text x="95" y="105" text-anchor="middle" fill="#6ee7b7" font-size="9">Thymeleaf 관리자 UI</text>
+    <text x="95" y="120" text-anchor="middle" fill="#6ee7b7" font-size="9">글로벌 예외 처리</text>
+
+    <path d="M180 80 L200 80" stroke="#34d399" stroke-width="2" marker-end="url(#ar3)"/>
+
+    <!-- Step 2 -->
+    <rect x="200" y="30" width="170" height="100" rx="12" fill="#1e1b4b50" stroke="#818cf850" stroke-width="1.5"/>
+    <text x="285" y="55" text-anchor="middle" fill="#a5b4fc" font-size="12" font-weight="700">Step 2: Wishlist</text>
+    <text x="285" y="75" text-anchor="middle" fill="#c7d2fe" font-size="9">JWT 인증 시스템</text>
+    <text x="285" y="90" text-anchor="middle" fill="#c7d2fe" font-size="9">커스텀 Validation</text>
+    <text x="285" y="105" text-anchor="middle" fill="#c7d2fe" font-size="9">회원 관리 + 역할(ADMIN/USER)</text>
+    <text x="285" y="120" text-anchor="middle" fill="#c7d2fe" font-size="9">서블릿 필터</text>
+
+    <path d="M370 80 L390 80" stroke="#818cf8" stroke-width="2" marker-end="url(#ar3)"/>
+
+    <!-- Step 3 -->
+    <rect x="390" y="30" width="170" height="100" rx="12" fill="#1a2e0550" stroke="#84cc1650" stroke-width="1.5"/>
+    <text x="475" y="55" text-anchor="middle" fill="#bef264" font-size="12" font-weight="700">Step 3: Enhancement</text>
+    <text x="475" y="75" text-anchor="middle" fill="#d9f99d" font-size="9">JDBC → JPA 전환</text>
+    <text x="475" y="90" text-anchor="middle" fill="#d9f99d" font-size="9">엔티티 관계 매핑</text>
+    <text x="475" y="105" text-anchor="middle" fill="#d9f99d" font-size="9">위시리스트 + 상품 옵션</text>
+    <text x="475" y="120" text-anchor="middle" fill="#d9f99d" font-size="9">페이지네이션</text>
+
+    <path d="M560 80 L580 80" stroke="#84cc16" stroke-width="2" marker-end="url(#ar3)"/>
+
+    <!-- Step 4 -->
+    <rect x="580" y="30" width="160" height="100" rx="12" fill="#45142050" stroke="#f8717150" stroke-width="1.5"/>
+    <text x="660" y="55" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="700">Step 4: Order</text>
+    <text x="660" y="75" text-anchor="middle" fill="#fecaca" font-size="9">카카오 OAuth 2.0</text>
+    <text x="660" y="90" text-anchor="middle" fill="#fecaca" font-size="9">주문 시스템 + 재고 관리</text>
+    <text x="660" y="105" text-anchor="middle" fill="#fecaca" font-size="9">카카오톡 메시지 발송</text>
+    <text x="660" y="120" text-anchor="middle" fill="#fecaca" font-size="9">AWS EC2 배포</text>
+
+    <!-- Bottom: Tech growth bar -->
+    <rect x="10" y="170" width="730" height="90" rx="12" fill="#111827" stroke="#1f2937" stroke-width="1"/>
+    <text x="375" y="195" text-anchor="middle" fill="#6b7280" font-size="11" font-weight="600">기술 성장 흐름</text>
+
+    <text x="95" y="220" text-anchor="middle" fill="#9ca3af" font-size="9">HashMap → H2</text>
+    <text x="95" y="238" text-anchor="middle" fill="#9ca3af" font-size="9">JdbcTemplate</text>
+
+    <text x="285" y="220" text-anchor="middle" fill="#9ca3af" font-size="9">+ JWT/JJWT</text>
+    <text x="285" y="238" text-anchor="middle" fill="#9ca3af" font-size="9">+ Bean Validation</text>
+
+    <text x="475" y="220" text-anchor="middle" fill="#9ca3af" font-size="9">+ Spring Data JPA</text>
+    <text x="475" y="238" text-anchor="middle" fill="#9ca3af" font-size="9">+ Dirty Checking</text>
+
+    <text x="660" y="220" text-anchor="middle" fill="#9ca3af" font-size="9">+ RestClient</text>
+    <text x="660" y="238" text-anchor="middle" fill="#9ca3af" font-size="9">+ OAuth + 배포</text>
+
+    <defs><marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4b5563"/></marker></defs>
+  </svg>
+</div>
+
+<h2>관련 GitHub 저장소</h2>
+<ul>
+  <li><strong>Step 1</strong>: <a href="https://github.com/hekengi/spring-gift-product" target="_blank" style="color:#34d399;">spring-gift-product</a> — REST API + JdbcTemplate + 관리자 UI</li>
+  <li><strong>Step 2</strong>: <a href="https://github.com/hekengi/spring-gift-wishlist" target="_blank" style="color:#34d399;">spring-gift-wishlist</a> — JWT 인증 + 커스텀 Validation</li>
+  <li><strong>Step 3</strong>: <a href="https://github.com/hekengi/spring-gift-enhancement" target="_blank" style="color:#34d399;">spring-gift-enhancement</a> — JPA 전환 + 위시리스트 + 상품 옵션</li>
+  <li><strong>Step 4</strong>: <a href="https://github.com/hekengi/spring-gift-order" target="_blank" style="color:#34d399;">spring-gift-order</a> — 카카오 OAuth + 주문 + 배포</li>
+</ul>
+
+<h2>주요 학습 포인트</h2>
+
+<h3>레이어드 아키텍처</h3>
+<p>Controller → Service → Repository → Entity/DTO 구조를 직접 설계하고 리팩토링하며 각 레이어의 책임 분리를 체득했습니다.</p>
+
+<h3>JDBC → JPA 마이그레이션</h3>
+<p>수동 SQL(JdbcTemplate)에서 Spring Data JPA로 전환하며, ORM이 해결하는 문제(보일러플레이트 감소, Dirty Checking 등)를 직접 경험했습니다.</p>
+
+<h3>OAuth 2.0 전체 플로우</h3>
+<p>카카오 Authorization Code Flow를 직접 구현하며 Access Token/Refresh Token 라이프사이클, 외부 API 연동, 토큰 갱신 패턴을 학습했습니다.</p>
+
+<h3>서비스 컴포지션</h3>
+<p>OrderService(주문 로직) + KakaoMessageService(메시지 발송) → KakaoOrderService(조합)로 비즈니스 로직과 외부 연동을 분리하는 설계를 적용했습니다.</p>
+
+<h3>테스트</h3>
+<p>단위 테스트(Mockito) → 리포지토리 테스트(@DataJpaTest) → 통합 테스트(@SpringBootTest) → E2E 시나리오 테스트까지 점진적으로 테스트를 확장했습니다.</p>
+
+</ProjectLayout>

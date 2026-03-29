@@ -1,0 +1,100 @@
+---
+const theme = Astro.props.theme || 'light';
+const isDark = theme === 'dark';
+
+const titleColor = 'text-emerald-400';
+const headingColor = 'text-white';
+const cardBg = 'bg-gray-900 border-gray-800 hover:border-emerald-500/30 hover:shadow-emerald-500/5';
+const cardTitle = 'text-white group-hover:text-emerald-400';
+const cardOrg = 'text-gray-500';
+const cardDesc = 'text-gray-400';
+const periodBg = 'text-gray-400 bg-gray-800';
+const highlightStyle = 'text-emerald-400 bg-emerald-500/10';
+const tagStyle = 'text-gray-400 bg-gray-800';
+
+const projects = [
+  {
+    title: 'AI 기반 에너지 소재 열화 예측 플랫폼',
+    org: '한국에너지기술연구원',
+    period: '2026.02 - 현재',
+    desc: '수소연료전지 촉매의 SEM 이미지를 분석하여 열화 상태를 자동 예측하는 플랫폼을 구축했습니다. 10종 딥러닝 모델을 교차 검증하여 검증 정확도 99%를 달성하고, GradCAM·커스텀 LIME·CRAFT를 적용한 XAI 프레임워크로 모델 판단 근거를 시각적으로 검증할 수 있도록 했습니다.',
+    highlights: ['검증 정확도 99%', '10종 모델 교차 검증', 'XAI 프레임워크'],
+    tags: ['Python', 'PyTorch', 'OpenCV', 'scikit-image', 'LIME'],
+    github: null,
+    detail: '/projects/kier',
+  },
+  {
+    title: 'UniScope — 대학·교수 평가 플랫폼',
+    org: '카카오테크 캠퍼스 | 6인 팀 (Backend 3인)',
+    period: '2025.04 - 2025.11',
+    desc: '한국 대학의 강의와 교수를 평가·검색·비교하는 플랫폼의 백엔드를 개발했습니다. 기획 단계를 주도(80%)하고 DB 계층 구조를 제안했으며, Spring Security + JWT 무상태 인증과 Gmail SMTP 이메일 인증을 구현했습니다.',
+    highlights: ['기획 주도 (80%)', '인증 시스템 전담', 'N+1 성능 개선'],
+    tags: ['Java', 'Spring Boot', 'Spring Security', 'JPA', 'JWT'],
+    github: 'https://github.com/hekengi/Team21_BE',
+    detail: '/projects/uniscope',
+  },
+  {
+    title: '커리큘럼 언러닝 프레임워크 설계',
+    org: '충남대학교 졸업논문 | 3인 팀',
+    period: '2025',
+    desc: '학습된 AI 모델에서 특정 데이터의 영향을 선택적으로 제거하는 머신 언러닝 연구를 수행했습니다. 기억 점수로 망각 난이도를 정량화하고 Low-first/High-first 커리큘럼 전략을 설계하여, 알고리즘별 최적 전략이 다름을 실증했습니다.',
+    highlights: ['보존 성능 약 9% 개선', '3 x 3 x 3 실험', 'PyTorch 알고리즘 재현'],
+    tags: ['Python', 'PyTorch', 'ResNet-18', 'CIFAR-10'],
+    github: null,
+    detail: '/projects/unlearning',
+  },
+  {
+    title: '선물하기 서비스 백엔드',
+    org: '카카오테크 캠퍼스 | 개인 미션 4단계',
+    period: '2025.04 - 2025.11',
+    desc: 'Spring Boot 기반의 서비스를 4단계에 걸쳐 점진적으로 개발했습니다. REST API + JdbcTemplate에서 시작해 JWT 인증, JPA 전환, 카카오 OAuth, 주문 시스템, AWS EC2 배포까지 백엔드 전체 플로우를 경험했습니다.',
+    highlights: ['JDBC → JPA 마이그레이션', '카카오 OAuth + 메시지 API', 'AWS EC2 배포'],
+    tags: ['Java', 'Spring Boot', 'JPA', 'JWT', 'Kakao OAuth', 'AWS'],
+    github: 'https://github.com/hekengi/spring-gift-order',
+    detail: '/projects/spring-gift',
+  },
+];
+---
+
+<section id="projects" class="py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class:list={['text-sm font-semibold uppercase tracking-widest mb-2', titleColor]}>Projects</h2>
+    <h3 class:list={['text-3xl font-bold mb-12', headingColor]}>프로젝트</h3>
+    <div class="grid md:grid-cols-2 gap-6">
+      {projects.map((project) => (
+        <article class:list={['group p-6 rounded-2xl border hover:shadow-lg transition-all duration-300 flex flex-col', cardBg]}>
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <h4 class:list={['text-lg font-bold transition-colors', cardTitle]}>{project.title}</h4>
+              <p class:list={['text-sm', cardOrg]}>{project.org}</p>
+            </div>
+            <span class:list={['text-xs px-2.5 py-1 rounded-full shrink-0 ml-3', periodBg]}>{project.period}</span>
+          </div>
+          <p class:list={['text-sm leading-relaxed mb-4', cardDesc]}>{project.desc}</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            {project.highlights.map(h => (
+              <span class:list={['text-xs font-medium px-2.5 py-1 rounded-full', highlightStyle]}>{h}</span>
+            ))}
+          </div>
+          <div class="flex flex-wrap gap-1.5 mb-5">
+            {project.tags.map(tag => (
+              <span class:list={['text-xs px-2 py-0.5 rounded', tagStyle]}>{tag}</span>
+            ))}
+          </div>
+          <div class="mt-auto flex items-center gap-3 pt-4 border-t border-gray-800">
+            <a href={project.detail} class="inline-flex items-center gap-1.5 text-sm text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
+              <span>자세히 보기</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+            {project.github && (
+              <a href={project.github} target="_blank" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-300 transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <span>GitHub</span>
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
