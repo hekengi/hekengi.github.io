@@ -20,11 +20,3 @@
 | **UniScope** | 카카오테크 캠퍼스 팀 프로젝트 · Spring Boot, Spring Security, JPA |
 | **커리큘럼 언러닝 프레임워크** | 졸업논문 · PyTorch, ResNet-18, Machine Unlearning |
 | **선물하기 서비스 백엔드** | 카카오테크 캠퍼스 개인 미션 · Spring Boot, JWT, Kakao OAuth, AWS |
-
-## Development
-
-```bash
-npm install
-npm run dev       # localhost:4321
-npm run build     # ./dist/
-```
