@@ -1,43 +1,30 @@
-# Astro Starter Kit: Minimal
+# hekengi.github.io
 
-```sh
-npm create astro@latest -- --template minimal
+**최효은** | Backend Developer Portfolio
+
+[![Deploy](https://github.com/hekengi/hekengi.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/hekengi/hekengi.github.io/actions/workflows/deploy.yml)
+
+> https://hekengi.github.io
+
+## Tech Stack
+
+- [Astro](https://astro.build) v6
+- [Tailwind CSS](https://tailwindcss.com) v4
+- GitHub Pages + GitHub Actions
+
+## Projects
+
+| Project | Description |
+|---|---|
+| **AI 기반 에너지 소재 열화 예측 플랫폼** | KIER 인턴 · PyTorch, OpenCV, GradCAM, LIME, CRAFT |
+| **UniScope** | 카카오테크 캠퍼스 팀 프로젝트 · Spring Boot, Spring Security, JPA |
+| **커리큘럼 언러닝 프레임워크** | 졸업논문 · PyTorch, ResNet-18, Machine Unlearning |
+| **선물하기 서비스 백엔드** | 카카오테크 캠퍼스 개인 미션 · Spring Boot, JWT, Kakao OAuth, AWS |
+
+## Development
+
+```bash
+npm install
+npm run dev       # localhost:4321
+npm run build     # ./dist/
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
