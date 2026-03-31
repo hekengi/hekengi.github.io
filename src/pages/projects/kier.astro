@@ -15,7 +15,7 @@ import ProjectLayout from '../../layouts/ProjectLayout.astro';
   수소연료전지(PEMFC) 촉매의 SEM(주사전자현미경) 이미지를 AI로 분석하여 열화 상태를 자동으로 예측하는 플랫폼을 구축했습니다. 연구원분들이 기존에 육안으로 분석하던 과정을, 자동화된 분석 파이프라인과 딥러닝 모델로 대체하는 것이 목표였습니다.
 </p>
 <div class="callout">
-  <p>핵심 성과: 높은 정확도에 만족하지 않고, GradCAM·LIME·CRAFT를 적용한 XAI 프레임워크를 설계하여 연구원이 AI의 판단을 신뢰하고 실제 연구에 활용할 수 있는 환경을 조성했습니다.</p>
+  <p>핵심 성과: 높은 정확도에 만족하지 않고, GradCAM, LIME, CRAFT를 적용한 XAI 프레임워크를 설계하여 연구원이 AI의 판단을 신뢰하고 실제 연구에 활용할 수 있는 환경을 조성했습니다.</p>
 </div>
 
 <div class="stat-grid">
@@ -122,7 +122,7 @@ import ProjectLayout from '../../layouts/ProjectLayout.astro';
   기존 Otsu 임계값 방식은 표면 질감까지 기공으로 잘못 분류하여 2~3배 과검출되었습니다. 4가지 임계값 방식(Otsu, Triangle, 평균-kσ, 백분위수)을 비교 실험한 뒤, SEM 이미지에서 기공은 전자가 빠져나오지 못하는 깊은 구멍이라는 물리적 특성에 착안하여 <strong>Mode-Relative Threshold</strong> 알고리즘을 직접 설계했습니다.
 </p>
 
-<h3>3. 소규모·불균형 데이터 극복</h3>
+<h3>3. 소규모, 불균형 데이터 극복</h3>
 <p>
   72장의 이미지(0K: 22장, 200K: 50장)로 학습해야 했습니다. ImageNet 사전학습 가중치 전이학습, 소수 클래스 2.27배 가중치, WeightedRandomSampler, 데이터 증강을 조합하여 극복했습니다. 10종 모델 × 3가지 데이터 분할 비율(8:2, 5:5, 2:8)로 총 24회 실험을 수행하여 ConvNeXt-Tiny, DenseNet-121, MobileNet V2가 극단적 조건에서도 100%를 유지함을 확인했습니다.
 </p>
